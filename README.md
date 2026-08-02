@@ -10,4 +10,4 @@ I chose software engineering because of the wide job opportunities and work flex
 
 During my one year of studying RPL, i have created several projects. Namely a mathematical calculator GUI, a login form, a library using the Java programming language. And i also simple personal biodata profile Made project is trying profile using HTML. My own project is trying to create birthday website using HTML, CSS, and Javascript. I have also participated in an industrial teaching program about Al Development.
 
-My career goal is to become an Cyber security Engineer. I want to profect lot devices from cyber threats. I am alse interested in a carrer as a web developer. Web developer as a second profession profession working remotely from home. I hope to keep improving my skills, & contribute to the future of technology.
+My career goal is to become an Cyber security Engineer. I want to protect IoT devices from cyber threats. I am alse interested in a carrer as a web developer. Web developer as a second profession profession working remotely from home. I hope to keep improving my skills, & contribute to the future of technology.
