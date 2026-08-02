@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focus Learn - Aplikasi Belajar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #4facfe, #6a11cb);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ===== LOGIN PAGE ===== */
+.login-page {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.login-logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #4facfe, #6a11cb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 40px;
+  box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+}
+
+.login-card h1 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.login-subtitle {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  color: #555;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  padding-left: 45px;
+  border: 2px solid #e1e5ee;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s;
+  background: #f8f9fa;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 40px;
+  color: #6a11cb;
+  font-size: 18px;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4facfe;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #4facfe, #6a11cb);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 15px rgba(79, 172, 254, 0.3);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+.demo-info {
+  margin-top: 20px;
+  padding: 12px;
+  background: #f0f7ff;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #4facfe;
+  text-align: left;
+}
+
+.demo-info i {
+  margin-right: 5px;
+}
+
+/* ===== DASHBOARD ===== */
+.dashboard {
+  width: 100%;
+  max-width: 450px;
+  display: none;
+  animation: slideUp 0.5s ease;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 0 5px;
+}
+
+.app-title {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 15px;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #4facfe, #6a11cb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.user-name {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  color: #333;
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Schedule Card */
+.schedule-input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #e1e5ee;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  transition: border-color 0.3s;
+}
+
+.schedule-input:focus {
+  outline: none;
+  border-color: #4facfe;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #4facfe, #6a11cb);
+  color: white;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+}
+
+.schedule-display {
+  margin-top: 15px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #555;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.schedule-display i {
+  color: #4facfe;
+}
+
+/* Timer Card */
+.timer-display {
+  font-size: 52px;
+  font-weight: 700;
+  text-align: center;
+  margin: 15px 0;
+  color: #333;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+}
+
+.timer-progress {
+  height: 6px;
+  background: #e1e5ee;
+  border-radius: 3px;
+  margin: 10px 0 20px;
+  overflow: hidden;
+}
+
+.timer-progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, #4facfe, #6a11cb);
+  width: 0%;
+  transition: width 1s linear;
+  border-radius: 3px;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.timer-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #00b09b, #96c93d);
+  color: white;
+}
+
+.pause-btn {
+  background: linear-gradient(135deg, #ffa726, #ff7043);
+  color: white;
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, #8e9eab, #eef2f3);
+  color: #333;
+}
+
+.anti-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.anti-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 15px rgba(106, 17, 203, 0.3);
+}
+
+.anti-btn.active {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+/* Chart Card */
+.chart-container {
+  height: 120px;
+  margin-top: 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.chart-bar {
+  flex: 1;
+  background: linear-gradient(to top, #4facfe, #6a11cb);
+  border-radius: 6px 6px 0 0;
+  min-height: 10px;
+  transition: height 0.3s;
+  position: relative;
+}
+
+.chart-bar:hover::after {
+  content: attr(data-value);
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Subjects Card */
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.subject-item {
+  text-align: center;
+  padding: 15px 10px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.subject-item:hover {
+  transform: translateY(-3px);
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.subject-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 10px;
+  background: linear-gradient(135deg, #4facfe, #6a11cb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+}
+
+.subject-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Motivation & Tips Cards */
+.motivation-card {
+  background: linear-gradient(135deg, #4facfe, #6a11cb);
+  color: white;
+  padding: 25px;
+}
+
+.tips-card {
+  background: linear-gradient(135deg, #00b09b, #96c93d);
+  color: white;
+  padding: 25px;
+}
+
+.motivation-content, .tips-content {
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+/* ===== FOCUS MODE ===== */
+.focus-mode {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #1a2980, #26d0ce);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.focus-container {
+  width: 90%;
+  max-width: 400px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.focus-header {
+  margin-bottom: 30px;
+}
+
+.focus-header h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.focus-header p {
+  opacity: 0.9;
+  font-size: 15px;
+}
+
+.focus-timer {
+  width: 220px;
+  height: 220px;
+  margin: 30px auto;
+  border-radius: 50%;
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.focus-timer::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.5);
+  animation: spin 1s linear infinite;
+}
+
+.focus-controls {
+  display: flex;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.focus-pause, .focus-finish {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.focus-pause {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.focus-pause:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.focus-finish {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+}
+
+.focus-finish:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 15px rgba(255, 65, 108, 0.3);
+}
+
+.focus-motivation {
+  font-size: 15px;
+  opacity: 0.9;
+  margin-top: 20px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.focus-exit {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s;
+}
+
+.focus-exit:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+    align-items: flex-start;
+    padding-top: 30px;
+  }
+  
+  .login-card, .dashboard {
+    max-width: 100%;
+  }
+  
+  .card {
+    padding: 18px;
+  }
+  
+  .timer-display {
+    font-size: 44px;
+  }
+  
+  .focus-timer {
+    width: 200px;
+    height: 200px;
+    font-size: 42px;
+  }
+  
+  .app-title {
+    font-size: 20px;
+  }
+  
+  .user-name {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <div class="login-logo">
+      <i class="fas fa-graduation-cap"></i>
+    </div>
+    <h1>Focus Learn</h1>
+    <p class="login-subtitle">Masuk untuk melanjutkan belajar</p>
+    
+    <div class="input-group">
+      <label for="username"><i class="fas fa-user"></i> Username</label>
+      <div class="input-icon">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <input type="text" id="username" placeholder="Masukkan username" required>
+    </div>
+    
+    <div class="input-group">
+      <label for="password"><i class="fas fa-lock"></i> Password</label>
+      <div class="input-icon">
+        <i class="fas fa-key"></i>
+      </div>
+      <input type="password" id="password" placeholder="Masukkan password" required>
+    </div>
+    
+    <button class="login-btn" onclick="login()">
+      <i class="fas fa-sign-in-alt"></i> Masuk
+    </button>
+    
+    <div class="demo-info">
+      <i class="fas fa-info-circle"></i>
+      <strong>Demo Login:</strong> Username: siswa | Password: 123
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <!-- Header dengan user info -->
+  <div class="app-header">
+    <div class="app-title">
+      <i class="fas fa-graduation-cap"></i> Focus Learn
+    </div>
+    <div class="user-info">
+      <div class="user-avatar" id="userAvatar">S</div>
+      <div class="user-name" id="userName">Siswa</div>
+      <button class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Keluar
+      </button>
+    </div>
+  </div>
+  
+  <!-- Jadwal Belajar -->
+  <div class="card">
+    <h3><i class="fas fa-calendar-alt"></i> Atur Jadwal Belajar</h3>
+    <input type="text" class="schedule-input" id="scheduleInput" placeholder="Contoh: Belajar RPL jam 7 malam">
+    <button class="save-btn" onclick="saveSchedule()">
+      <i class="fas fa-save"></i> Simpan Jadwal
+    </button>
+    <div class="schedule-display" id="scheduleDisplay">
+      <i class="fas fa-clock"></i> Belum ada jadwal yang disimpan.
+    </div>
+  </div>
+  
+  <!-- Timer Fokus -->
+  <div class="card">
+    <h3><i class="fas fa-stopwatch"></i> Timer Fokus</h3>
+    <div class="timer-display" id="timerDisplay">25:00</div>
+    <div class="timer-progress">
+      <div class="timer-progress-bar" id="timerProgress"></div>
+    </div>
+    <div class="timer-controls">
+      <button class="timer-btn start-btn" onclick="startTimer()">
+        <i class="fas fa-play"></i> Mulai
+      </button>
+      <button class="timer-btn pause-btn" onclick="pauseTimer()">
+        <i class="fas fa-pause"></i> Jeda
+      </button>
+      <button class="timer-btn reset-btn" onclick="resetTimer()">
+        <i class="fas fa-redo"></i> Reset
+      </button>
+    </div>
+    <button class="anti-btn" id="antiBtn" onclick="activateFocusMode()">
+      <i class="fas fa-rocket"></i> Mode Anti Distraksi
+    </button>
+  </div>
+  
+  <!-- Grafik Produktivitas -->
+  <div class="card">
+    <h3><i class="fas fa-chart-line"></i> Grafik Produktivitas</h3>
+    <div class="chart-container" id="chartContainer">
+      <!-- Chart bars akan di-generate oleh JavaScript -->
+    </div>
+    <div class="chart-labels">
+      <span>Sen</span><span>Sel</span><span>Rab</span>
+      <span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+    </div>
+  </div>
+  
+  <!-- Mata Pelajaran -->
+  <div class="card">
+    <h3><i class="fas fa-book"></i> Mata Pelajaran</h3>
+    <div class="subjects-grid">
+      <div class="subject-item" onclick="selectSubject('RPL')">
+        <div class="subject-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="subject-name">RPL</div>
+      </div>
+      <div class="subject-item" onclick="selectSubject('Matematika')">
+        <div class="subject-icon"><i class="fas fa-calculator"></i></div>
+        <div class="subject-name">Matematika</div>
+      </div>
+      <div class="subject-item" onclick="selectSubject('Bahasa')">
+        <div class="subject-icon"><i class="fas fa-language"></i></div>
+        <div class="subject-name">Bahasa</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Motivasi -->
+  <div class="card motivation-card">
+    <h3><i class="fas fa-fire"></i> Motivasi Belajar</h3>
+    <div class="motivation-content">
+      "Konsistensi adalah kunci keberhasilan. Sedikit demi sedikit, lama-lama menjadi bukit!"
+    </div>
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-value" id="studyDays">0</div>
+        <div class="stat-label">Hari Belajar</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="focusTime">0</div>
+        <div class="stat-label">Menit Fokus</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="productivity">0%</div>
+        <div class="stat-label">Produktivitas</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Tips Belajar -->
+  <div class="card tips-card">
+    <h3><i class="fas fa-lightbulb"></i> Tips Belajar Efektif</h3>
+    <div class="tips-content">
+      Gunakan teknik Pomodoro (25 menit belajar, 5 menit istirahat) dan ciptakan lingkungan belajar yang bebas distraksi.
+    </div>
+  </div>
+</div>
+
+<!-- FOCUS MODE -->
+<div class="focus-mode" id="focusMode">
+  <button class="focus-exit" onclick="exitFocusMode()">
+    <i class="fas fa-times"></i>
+  </button>
+  <div class="focus-container">
+    <div class="focus-header">
+      <h2><i class="fas fa-rocket"></i> Mode Fokus Aktif</h2>
+      <p>Tutup semua distraksi, fokus pada tujuanmu!</p>
+    </div>
+    
+    <div class="focus-timer" id="focusTimer">25:00</div>
+    
+    <div class="focus-controls">
+      <button class="focus-pause" id="focusPauseBtn" onclick="toggleFocusTimer()">
+        <i class="fas fa-pause"></i> Jeda
+      </button>
+      <button class="focus-finish" onclick="finishFocusTimer()">
+        <i class="fas fa-flag-checkered"></i> Selesai
+      </button>
+    </div>
+    
+    <div class="focus-motivation">
+      "Fokus saat ini menentukan kesuksesanmu di masa depan. Tetap semangat!"
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== ELEMENTS =====
+const loginPage = document.getElementById('loginPage');
+const dashboard = document.getElementById('dashboard');
+const focusMode = document.getElementById('focusMode');
+
+// Login elements
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const userAvatar = document.getElementById('userAvatar');
+const userName = document.getElementById('userName');
+
+// Schedule elements
+const scheduleInput = document.getElementById('scheduleInput');
+const scheduleDisplay = document.getElementById('scheduleDisplay');
+
+// Timer elements
+const timerDisplay = document.getElementById('timerDisplay');
+const timerProgress = document.getElementById('timerProgress');
+const antiBtn = document.getElementById('antiBtn');
+
+// Stats elements
+const studyDaysEl = document.getElementById('studyDays');
+const focusTimeEl = document.getElementById('focusTime');
+const productivityEl = document.getElementById('productivity');
+
+// Chart element
+const chartContainer = document.getElementById('chartContainer');
+
+// Focus mode elements
+const focusTimer = document.getElementById('focusTimer');
+const focusPauseBtn = document.getElementById('focusPauseBtn');
+
+// ===== VARIABLES =====
+let timerSeconds = 25 * 60;
+let timerInterval = null;
+let isTimerRunning = false;
+
+let focusSeconds = 25 * 60;
+let focusInterval = null;
+let isFocusPaused = false;
+
+// ===== USER MANAGEMENT =====
+function getCurrentUser() {
+  return localStorage.getItem('currentUser');
+}
+
+function setCurrentUser(username) {
+  localStorage.setItem('currentUser', username);
+  // Simpan timestamp login untuk session management
+  localStorage.setItem('loginTime', Date.now());
+}
+
+function clearCurrentUser() {
+  localStorage.removeItem('currentUser');
+  localStorage.removeItem('loginTime');
+}
+
+function checkSession() {
+  const user = getCurrentUser();
+  const loginTime = localStorage.getItem('loginTime');
+  
+  if (user && loginTime) {
+    // Cek apakah session masih valid (8 jam)
+    const sessionDuration = Date.now() - parseInt(loginTime);
+    const eightHours = 8 * 60 * 60 * 1000;
+    
+    if (sessionDuration < eightHours) {
+      // Session masih valid, langsung masuk dashboard
+      showDashboard(user);
+      return true;
+    } else {
+      // Session expired
+      clearCurrentUser();
+    }
+  }
+  return false;
+}
+
+// ===== LOGIN FUNCTION =====
+function login() {
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value.trim();
+  
+  if (!username || !password) {
+    alert('Harap isi username dan password!');
+    return;
+  }
+  
+  // Demo login (bisa diganti dengan backend validation)
+  if ((username === 'siswa' && password === '123') || 
+      (username && password.length >= 3)) {
+    
+    setCurrentUser(username);
+    showDashboard(username);
+    
+    // Reset form
+    usernameInput.value = '';
+    passwordInput.value = '';
+  } else {
+    alert('Username atau password salah! Coba: siswa / 123');
+  }
+}
+
+function showDashboard(username) {
+  // Update user info
+  const initials = username.charAt(0).toUpperCase();
+  userAvatar.textContent = initials;
+  userName.textContent = username;
+  
+  // Tampilkan dashboard, sembunyikan login
+  loginPage.style.display = 'none';
+  dashboard.style.display = 'block';
+  
+  // Load data pengguna
+  loadUserData(username);
+  
+  // Inisialisasi chart
+  initProductivityChart();
+  
+  // Update stats
+  updateStats();
+}
+// ===== LOGOUT FUNCTION =====
+function logout() {
+  if (confirm('Apakah Anda yakin ingin keluar dari akun?')) {
+    // Hentikan semua timer
+    stopTimer();
+    if (focusInterval) {
+      clearInterval(focusInterval);
+    }
+    
+    // Keluar dari focus mode jika aktif
+    if (focusMode.style.display === 'flex') {
+      exitFocusMode();
+    }
+    
+    // Clear user session
+    clearCurrentUser();
+    
+    // Kembali ke login page
+    dashboard.style.display = 'none';
+    loginPage.style.display = 'block';
+    
+    // Reset dashboard state
+    resetDashboard();
+  }
+}
+
+function resetDashboard() {
+  // Reset timer
+  timerSeconds = 25 * 60;
+  timerDisplay.textContent = formatTime(timerSeconds);
+  timerProgress.style.width = '0%';
+  isTimerRunning = false;
+  
+  // Reset schedule display
+  scheduleDisplay.innerHTML = '<i class="fas fa-clock"></i> Belum ada jadwal yang disimpan.';
+  scheduleDisplay.style.color = '';
+  scheduleInput.value = '';
+  
+  // Reset anti button
+  antiBtn.classList.remove('active');
+  antiBtn.innerHTML = '<i class="fas fa-rocket"></i> Mode Anti Distraksi';
+}
+
+// ===== USER DATA MANAGEMENT =====
+function loadUserData(username) {
+  // Load schedule dari localStorage
+  const savedSchedule = localStorage.getItem(`schedule_${username}`);
+  if (savedSchedule) {
+    scheduleDisplay.innerHTML = `<i class="fas fa-clock"></i> ${savedSchedule}`;
+    scheduleDisplay.style.color = '#4CAF50';
+    scheduleInput.value = savedSchedule;
+  }
+  
+  // Load stats
+  const stats = JSON.parse(localStorage.getItem(`stats_${username}`) || '{}');
+  return stats;
+}
+
+function saveSchedule() {
+  const user = getCurrentUser();
+  if (!user) return;
+  
+  const schedule = scheduleInput.value.trim();
+  if (schedule) {
+    // Simpan ke localStorage dengan key berdasarkan user
+    localStorage.setItem(`schedule_${user}`, schedule);
+    scheduleDisplay.innerHTML = `<i class="fas fa-clock"></i> ${schedule}`;
+    scheduleDisplay.style.color = '#4CAF50';
+    
+    // Tambahkan efek visual
+    scheduleDisplay.style.transform = 'scale(1.05)';
+    setTimeout(() => {
+      scheduleDisplay.style.transform = 'scale(1)';
+    }, 200);
+    
+    // Simpan aktivitas
+    saveActivity('schedule_saved', schedule);
+  } else {
+    scheduleDisplay.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Harap masukkan jadwal terlebih dahulu.';
+    scheduleDisplay.style.color = '#FF9800';
+  }
+}
+
+function saveActivity(type, data) {
+  const user = getCurrentUser();
+  if (!user) return;
+  
+  const today = new Date().toISOString().split('T')[0];
+  const activity = {
+    type: type,
+    data: data,
+    timestamp: new Date().toISOString()
+  };
+  
+  // Simpan aktivitas
+  let activities = JSON.parse(localStorage.getItem(`activities_${user}`) || '[]');
+  activities.push(activity);
+  localStorage.setItem(`activities_${user}`, JSON.stringify(activities));
+  
+  // Update stats
+  updateStats();
+}
+
+// ===== STATS FUNCTIONS =====
+function updateStats() {
+  const user = getCurrentUser();
+  if (!user) return;
+  
+  const activities = JSON.parse(localStorage.getItem(`activities_${user}`) || '[]');
+  const today = new Date().toISOString().split('T')[0];
+  
+  // Hitung hari belajar unik
+  const studyDaysSet = new Set();
+  let totalFocusMinutes = 0;
+  let completedSessions = 0;
+  
+  activities.forEach(activity => {
+    const activityDate = new Date(activity.timestamp).toISOString().split('T')[0];
+    studyDaysSet.add(activityDate);
+    
+    if (activity.type === 'timer_completed') {
+      totalFocusMinutes += 25; // Setiap sesi 25 menit
+      completedSessions++;
+    }
+  });
+  
+  // Hitung produktivitas (berdasarkan sesi yang diselesaikan minggu ini)
+  const thisWeekActivities = activities.filter(activity => {
+    const activityDate = new Date(activity.timestamp);
+    const today = new Date();
+    const oneWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+    return activityDate >= oneWeekAgo;
+  });
+  
+  const weeklySessions = thisWeekActivities.filter(a => a.type === 'timer_completed').length;
+  const productivity = Math.min(100, Math.floor((weeklySessions / 14) * 100)); // Maks 14 sesi per minggu
+  
+  // Update UI
+  studyDaysEl.textContent = studyDaysSet.size;
+  focusTimeEl.textContent = totalFocusMinutes;
+  productivityEl.textContent = `${productivity}%`;
+}
+
+// ===== TIMER FUNCTIONS =====
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+function startTimer() {
+  if (isTimerRunning) return;
+  
+  isTimerRunning = true;
+  const totalTime = 25 * 60;
+  
+  timerInterval = setInterval(() => {
+    if (timerSeconds > 0) {
+      timerSeconds--;
+      timerDisplay.textContent = formatTime(timerSeconds);
+      
+      // Update progress bar
+      const progress = ((totalTime - timerSeconds) / totalTime) * 100;
+      timerProgress.style.width = `${progress}%`;
+      
+      // Update chart visual
+      updateChartVisual(progress);
+    } else {
+      stopTimer();
+      timerProgress.style.width = '100%';
+      
+      // Simpan aktivitas
+      saveActivity('timer_completed', '25 menit');
+      
+      // Update stats
+      updateStats();
+      
+      alert('🎉 Waktu belajar selesai! Istirahat sejenak 5 menit.');
+    }
+  }, 1000);
+}
+
+function pauseTimer() {
+  if (!isTimerRunning) return;
+  
+  stopTimer();
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  isTimerRunning = false;
+}
+
+function resetTimer() {
+  stopTimer();
+  timerSeconds = 25 * 60;
+  timerDisplay.textContent = formatTime(timerSeconds);
+  timerProgress.style.width = '0%';
+}
+
+// ===== CHART FUNCTIONS =====
+function initProductivityChart() {
+  // Data dummy untuk chart (bisa diganti dengan data dari localStorage)
+  const productivityData = [40, 55, 50, 70, 85, 90, 65];
+  
+  // Bersihkan container
+  chartContainer.innerHTML = '';
+  
+  // Buat bar untuk setiap hari
+  productivityData.forEach((value, index) => {
+    const bar = document.createElement('div');
+    bar.className = 'chart-bar';
+    bar.style.height = `${value}%`;
+    bar.setAttribute('data-value', `${value}%`);
+    chartContainer.appendChild(bar);
+  });
+}
+
+function updateChartVisual(progress) {
+  const bars = document.querySelectorAll('.chart-bar');
+  const barIndex = Math.floor(progress / (100 / 7));
+  
+  if (barIndex < 7 && barIndex >= 0) {
+    // Reset semua bars ke warna default
+    bars.forEach(bar => {
+      bar.style.background = 'linear-gradient(to top, #4facfe, #6a11cb)';
+    });
+    
+    // Warna bar yang aktif
+    if (barIndex > 0) {
+      for (let i = 0; i < barIndex; i++) {
+        bars[i].style.background = 'linear-gradient(to top, #00b09b, #96c93d)';
+      }
+    }
+  }
+}
+// ===== SUBJECT FUNCTIONS =====
+function selectSubject(subject) {
+  alert(`Anda memilih mata pelajaran: ${subject}`);
+  // Bisa ditambahkan fungsi untuk membuka materi pelajaran
+  saveActivity('subject_selected', subject);
+}
+
+// ===== FOCUS MODE FUNCTIONS =====
+function activateFocusMode() {
+  if (!getCurrentUser()) {
+    alert('Harap login terlebih dahulu!');
+    return;
+  }
+  
+  // Hentikan timer utama jika sedang berjalan
+  stopTimer();
+  
+  // Update tombol
+  antiBtn.classList.add('active');
+  antiBtn.innerHTML = '<i class="fas fa-circle"></i> Mode Aktif';
+  
+  // Masuk ke focus mode
+  dashboard.style.display = 'none';
+  focusMode.style.display = 'flex';
+  
+  // Mulai timer focus mode
+  startFocusTimer();
+}
+
+function exitFocusMode() {
+  if (confirm('Keluar dari Mode Fokus?')) {
+    // Hentikan timer focus
+    if (focusInterval) {
+      clearInterval(focusInterval);
+      focusInterval = null;
+    }
+    
+    // Kembali ke dashboard
+    focusMode.style.display = 'none';
+    dashboard.style.display = 'block';
+    
+    // Reset tombol
+    antiBtn.classList.remove('active');
+    antiBtn.innerHTML = '<i class="fas fa-rocket"></i> Mode Anti Distraksi';
+    
+    // Reset focus timer
+    focusSeconds = 25 * 60;
+    focusTimer.textContent = formatTime(focusSeconds);
+    focusPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Jeda';
+    isFocusPaused = false;
+  }
+}
+
+function startFocusTimer() {
+  focusSeconds = 25 * 60;
+  isFocusPaused = false;
+  focusPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Jeda';
+  
+  focusInterval = setInterval(() => {
+    if (focusSeconds > 0) {
+      focusSeconds--;
+      focusTimer.textContent = formatTime(focusSeconds);
+    } else {
+      clearInterval(focusInterval);
+      focusInterval = null;
+      
+      // Simpan aktivitas
+      saveActivity('focus_mode_completed', '25 menit');
+      
+      // Update stats
+      updateStats();
+      
+      alert('🎉 Sesi fokus selesai! Kerja yang bagus!');
+      exitFocusMode();
+    }
+  }, 1000);
+}
+
+function toggleFocusTimer() {
+  if (!focusInterval) return;
+  
+  if (!isFocusPaused) {
+    clearInterval(focusInterval);
+    focusPauseBtn.innerHTML = '<i class="fas fa-play"></i> Lanjut';
+    isFocusPaused = true;
+  } else {
+    focusInterval = setInterval(() => {
+      if (focusSeconds > 0) {
+        focusSeconds--;
+        focusTimer.textContent = formatTime(focusSeconds);
+      } else {
+        clearInterval(focusInterval);
+        focusInterval = null;
+        
+        // Simpan aktivitas
+        saveActivity('focus_mode_completed', '25 menit');
+        
+        // Update stats
+        updateStats();
+        
+        alert('🎉 Sesi fokus selesai! Kerja yang bagus!');
+        exitFocusMode();
+      }
+    }, 1000);
+    focusPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Jeda';
+    isFocusPaused = false;
+  }
+}
+
+function finishFocusTimer() {
+  if (confirm('Selesaikan sesi fokus sekarang?')) {
+    if (focusInterval) {
+      clearInterval(focusInterval);
+      focusInterval = null;
+    }
+    
+    // Simpan aktivitas
+    const completedMinutes = 25 - Math.floor(focusSeconds / 60);
+    saveActivity('focus_mode_finished', `${completedMinutes} menit`);
+    
+    // Update stats
+    updateStats();
+    
+    alert(`📈 Sesi fokus diselesaikan! Anda fokus selama ${completedMinutes} menit.`);
+    exitFocusMode();
+  }
+}
+
+// ===== INITIALIZATION =====
+// Cek session saat halaman dimuat
+window.addEventListener('DOMContentLoaded', () => {
+  // Cek apakah user sudah login
+  if (!checkSession()) {
+    // Tampilkan login page
+    loginPage.style.display = 'block';
+    dashboard.style.display = 'none';
+  }
+  
+  // Set timer display awal
+  timerDisplay.textContent = formatTime(timerSeconds);
+  focusTimer.textContent = formatTime(focusSeconds);
+  
+  // Fokus ke input username
+  usernameInput.focus();
+  
+  // Enter key untuk login
+  usernameInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      passwordInput.focus();
+    }
+  });
+  
+  passwordInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      login();
+    }
+  });
+});
+</script>
+</body>
+</html>
