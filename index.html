@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Felix</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style2.css">
+  
+</head>
+
+<body>
+<div class="container">
+
+    <!-- Kalender -->
+    <img src="date.png" class="calendar hidden">
+
+    <!-- Shadow putih -->
+    <div class="light hidden"></div>
+
+    <!-- Foto anak -->
+    <img src="kids.png" class="kid hidden">
+
+    <!-- Tulisan -->
+    <div class="title">
+
+      
+        <h1 class="hidden">Hi Felix!</h1>
+        
+
+        <p class="hidden">
+           <span>I'ts your day</span><br>
+            I have something special for you, are you ready?
+            
+        </p>
+      
+    </div>
+    
+  <div class="candle-container">
+    <button class="next-btn" onclick="window.location.href='dashboard4.html'">
+        See What's Next
+        <span>→</span>
+    </button>
+
+    <br>
+    <a href="https://ngl.link/impressionforkyzu" class="btn-feedback">
+    Send Message
+</a>
+  </div>
+  
+</div>
+<script>
+window.addEventListener("load",()=>{
+
+const calendar=document.querySelector(".calendar");
+const light=document.querySelector(".light");
+const kid=document.querySelector(".kid");
+
+const h1=document.querySelectorAll(".title h1");
+const p=document.querySelector(".title p");
+
+setTimeout(()=>{
+light.classList.add("show");
+},300);
+
+setTimeout(()=>{
+calendar.classList.add("show");
+},700);
+
+setTimeout(()=>{
+kid.classList.add("show");
+},1200);
+
+setTimeout(()=>{
+h1[0].classList.add("show");
+},1700);
+
+setTimeout(()=>{
+h1[1].classList.add("show");
+},2000);
+
+setTimeout(()=>{
+h1[2].classList.add("show");
+},2300);
+
+setTimeout(()=>{
+p.classList.add("show");
+},2700);
+
+});
+  const candle = document.querySelector(".candle-container");
+
+setTimeout(() => {
+    candle.classList.add("show");
+}, 3200);
+
+  window.addEventListener("load", () => {
+
+    const calendar = document.querySelector(".calendar");
+    const light = document.querySelector(".light");
+    const kid = document.querySelector(".kid");
+
+    const h1 = document.querySelectorAll(".title h1");
+    const p = document.querySelector(".title p");
+
+    const candle = document.querySelector(".candle-container");
+
+    setTimeout(() => light.classList.add("show"), 300);
+    setTimeout(() => calendar.classList.add("show"), 700);
+    setTimeout(() => kid.classList.add("show"), 1200);
+
+    setTimeout(() => h1[0].classList.add("show"), 1700);
+    setTimeout(() => h1[1].classList.add("show"), 2000);
+    setTimeout(() => h1[2].classList.add("show"), 2300);
+
+    setTimeout(() => p.classList.add("show"), 2700);
+
+    setTimeout(() => candle.classList.add("show"), 3200);
+    function NextPage() {
+    window.location.href = "dashboard3finish.html";
+}
+
+
+});
+</script>
+
+</body>
+</html>
